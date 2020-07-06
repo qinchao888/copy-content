@@ -5,7 +5,10 @@ document.body.contentEditable = true;
     const listeners = window.getEventListeners(tag);
     if (Object.keys(listeners).length) {
       for (let eventName in listeners) {
-        listeners[eventName].forEach((item, index) => tag.removeEventListener(eventName, item.listener))
+        listeners[eventName].forEach((item, index) => {
+          tag.removeEventListener(eventName, item.listener, false)
+          tag.removeEventListener(eventName, item.listener, true)
+        })
       }
     }
   }
